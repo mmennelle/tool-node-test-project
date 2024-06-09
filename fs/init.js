@@ -27,7 +27,7 @@ MQTT.sub(topic, function(conn, topic, msg) {
 
 // Publish a message to the original topic every 5 seconds
 Timer.set(5000 /* milliseconds */, Timer.REPEAT, function() {
-  let message = 'Hello MQTT from Mongoose OS';
-  let ok = MQTT.pub(topic, message, 1);
+  let message = 'Board Number 1';
+  let ok = MQTT.pub(responseTopic, message, 1);
   print('Attempted to publish:', ok ? 'success' : 'failure', 'topic:', topic, 'message:', message);
 }, null);
