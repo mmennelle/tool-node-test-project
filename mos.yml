@@ -1,0 +1,81 @@
+# Minimal Mongoose OS application configuration file
+
+# The version of Mongoose OS
+version: 2.20.0
+
+# The version of the manifest file format
+manifest_version: 2017-05-18
+
+# List of files / directories with V7 JavaScript code. As above, either fixed
+# or with wildcards. All these files will be minified and packed into the final
+# binary.
+js:
+  - fs/init.js
+
+# List of directories with filesystem files. These files will be copied to the
+# device filesystem.
+filesystem:
+  - fs
+
+# List of libs, used by this app. Lib names are specified with a leading "-"
+# character. Either fixed, e.g. "- rpc-service-fs" or with wildcards, e.g.
+# "- api-*".
+libs:
+  - origin: https://github.com/mongoose-os-libs/mqtt
+  - origin: https://github.com/mongoose-os-libs/rpc-common
+  - origin: https://github.com/mongoose-os-libs/rpc-service-config
+  - origin: https://github.com/mongoose-os-libs/rpc-service-fs
+  - origin: https://github.com/mongoose-os-libs/rpc-service-gpio
+  - origin: https://github.com/mongoose-os-libs/wifi
+  - origin: https://github.com/mongoose-os-libs/mjs
+  - origin: https://github.com/mongoose-os-libs/rpc-uart
+  #- origin: github.com/cesanta/mongoose-os
+
+# List of libraries this application depends on. This section should be
+# consistent across all applications, if you change something here, you
+# need to make sure all your applications have the same set of dependencies.
+libs_version: 2.20.0
+modules_version: 2.20.0
+mip_version: 2.20.0
+
+# Configuration for this application.
+config_schema:
+  - ["wifi.sta.enable", true]
+  - ["wifi.sta.ssid", "tool-node"]
+  - ["wifi.sta.pass", "1234567890"]
+  - ["mqtt.enable", true]
+  - ["mqtt.server", "10.0.0.32:5006"]
+
+# A list of tags for this application. They can be used to distinguish
+# between different versions of the same application.
+tags:
+  - js
+  - mqtt
+  - wifi
+
+# Build configuration for this application.
+build_vars:
+  MGOS_ENABLE_JS: 1
+
+# The platform on which this application runs.
+platforms:
+  - esp32
+
+# The firmware binary file.
+bin_file: build/objs/fw.zip
+
+# The file with metadata about the firmware binary file.
+manifest_file: build/objs/fw.json
+
+# The name of the application.
+name: tool-node
+
+# The description of the application.
+description: A basic Mongoose OS application that connects to Wi-Fi and an MQTT broker.
+
+# The maintainer of the application.
+maintainer: Mitchell Mennelle <mmennelle@nolaworksllc.com>
+
+
+
+          
