@@ -44,10 +44,9 @@ function handleIncomingMessage(conn, topic, msg) {
       1. initialize load sense and monitor for tool start
       2. set relay pin to high to activate tool. Also set green LED pin to high.
       3. monitor for tool stop, if stopped then
-      4. set relay pin to low to deactivate tool
-      5. extra logic: 
+      4. extra logic: 
         1. if tool is stopped, start timer for 3 minutes. allow immediate restart within that time
-        2. if tool is not started within 3 minutes, tag approval is needed again
+        2. if tool is not started within 3 minutes, tag approval is needed again. Set relay pin to low to deactivate tool
         3. The load sensor should monitor tool start for over current and shut off if above threshold. (this can be added later)
       */
     } else {
