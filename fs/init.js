@@ -37,12 +37,27 @@ function handleIncomingMessage(conn, topic, msg) {
   
   if (topic === responseTopic) {
     let response = JSON.parse(msg);
-    if (response.access) {
+    if (response.access) { //true or false based on JOSN return from broker.
       print('Access granted for RFID tag:', response.rfid);
-      // Add your access granted logic here
+      /*
+      Granted:
+      1. initialize load sense and monitor for tool start
+      2. set relay pin to high to activate tool. Also set green LED pin to high.
+      3. monitor for tool stop, if stopped then
+      4. set relay pin to low to deactivate tool
+      5. extra logic: 
+        1. if tool is stopped, start timer for 3 minutes. allow immediate restart within that time
+        2. if tool is not started within 3 minutes, tag approval is needed again
+        3. The load sensor should monitor tool start for over current and shut off if above threshold. (this can be added later)
+      */
     } else {
       print('Access denied for RFID tag:', response.rfid);
-      // Add your access denied logic here
+      /**
+       * Denied:
+       * 1. set red led pin to high.
+       * 2. flash 5 times to indicated denied access.
+       * 3. set red led pin to low.
+       */
     }
   }
 }
