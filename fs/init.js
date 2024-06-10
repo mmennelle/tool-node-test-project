@@ -26,8 +26,8 @@ MQTT.sub(topic, function(conn, topic, msg) {
 }, null);
 
 // Publish a message to the original topic every 5 seconds
-Timer.set(5000 /* milliseconds */, Timer.REPEAT, function() {
-  let message = 'Board Number 1';
+Timer.set(10000 /* milliseconds */, Timer.REPEAT, function() {
+  let message = 'Board Number 2';
   let ok = MQTT.pub(responseTopic, message, 1);
   print('Attempted to publish:', ok ? 'success' : 'failure', 'topic:', topic, 'message:', message);
 }, null);
